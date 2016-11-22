@@ -1,0 +1,36 @@
+CWS Sol
+------------------------
+Sol ID : 13
+Sol costs: 952.7402749997855
+Sol time: 0.003204643
+# of routes in sol: 28
+List of routes (cost and nodes): 
+Route 1 Costs = 8.32455532033676 Demand  = 600.0
+Route 2 Costs = 15.341660200712068 Demand  = 840.0
+Route 3 Costs = 8.32455532033676 Demand  = 600.0
+Route 4 Costs = 15.341660200712068 Demand  = 840.0
+Route 5 Costs = 8.32455532033676 Demand  = 600.0
+Route 6 Costs = 15.341660200712068 Demand  = 840.0
+Route 7 Costs = 8.32455532033676 Demand  = 600.0
+Route 8 Costs = 15.341660200712068 Demand  = 840.0
+Route 9 Costs = 26.558873956203158 Demand  = 972.0
+Route 10 Costs = 26.558873956203158 Demand  = 972.0
+Route 11 Costs = 26.558873956203158 Demand  = 972.0
+Route 12 Costs = 26.558873956203158 Demand  = 972.0
+Route 13 Costs = 34.86150478357763 Demand  = 984.0
+Route 14 Costs = 34.86150478357763 Demand  = 984.0
+Route 15 Costs = 34.86150478357763 Demand  = 984.0
+Route 16 Costs = 34.86150478357763 Demand  = 984.0
+Route 17 Costs = 39.37064524338875 Demand  = 929.0
+Route 18 Costs = 39.37064524338875 Demand  = 929.0
+Route 19 Costs = 39.37064524338875 Demand  = 929.0
+Route 20 Costs = 39.37064524338875 Demand  = 929.0
+Route 21 Costs = 51.74062007708494 Demand  = 981.0
+Route 22 Costs = 51.74062007708494 Demand  = 981.0
+Route 23 Costs = 51.74062007708494 Demand  = 981.0
+Route 24 Costs = 51.74062007708494 Demand  = 981.0
+Route 25 Costs = 61.987209168643645 Demand  = 978.0
+Route 26 Costs = 61.987209168643645 Demand  = 978.0
+Route 27 Costs = 61.987209168643645 Demand  = 978.0
+Route 28 Costs = 61.987209168643645 Demand  = 978.0
+-------------------------
