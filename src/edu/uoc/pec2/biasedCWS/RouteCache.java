@@ -29,11 +29,12 @@ public class RouteCache {
     public Route getBestRoute(Route route){
         String hashCode = getHash(route);
         Route r=this.routes.get(hashCode);
+        Route rout=route;
         if (r!=null) {
             if (r.getCosts() < route.getCosts())
-                return r;
+                rout=r;
         }else this.routes.put(hashCode,route);
-        return route;
+        return rout;
     }
 
     /**

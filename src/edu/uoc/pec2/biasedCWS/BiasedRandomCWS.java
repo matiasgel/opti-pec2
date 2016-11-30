@@ -4,6 +4,12 @@ import edu.uoc.pec2.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
+
 import cern.jet.random.Distributions;
 import cern.jet.random.Uniform;
 import cern.jet.random.engine.MersenneTwister64;
@@ -16,30 +22,48 @@ import cern.jet.random.engine.MersenneTwister64;
 public class BiasedRandomCWS {
     private Uniform randomGenerator=new Uniform(new MersenneTwister64());
     private final Integer MAXTIME=300;
-    private final long MAXITER=1000;
+    private final long MAXITER=10000;
     private  Integer iter=0;
     private long start;
     Test test;
     Inputs inputs;
     Integer age=0;
+    RouteCache cache;
+    Solution currentSol;
+
+
+    Runnable getTask(){
+       return   () -> {
+                Solution newSol=this.randomSolve();
+                newSol = cache.improve(newSol);
+           checkSol(newSol);
+       };
+    }
+
+    public synchronized void   checkSol(Solution newSol) {
+        if(!(currentSol.getCosts()<=newSol.getCosts()))
+            currentSol=newSol;
+    }
+
+    ;
+    
 
     public Solution solve(Test aTest, Inputs inputs) {
         this.inputs=inputs;
         this.test=aTest;
-        Solution currentSol = CWS.solve(aTest, inputs);
-        RouteCache cache = new RouteCache();
+         currentSol = CWS.solve(aTest, inputs);
+         cache = new RouteCache();
         cache.addAll(currentSol.getRoutes());
-
          start = ElapsedTime.systemTime();
         this.iter=0;
-        while(this.endCondition()){
-            Solution newSol=this.randomSolve();
-            newSol = cache.improve(newSol);
-            if(!(currentSol.getCosts()<=newSol.getCosts())) {
-                currentSol=newSol;
-                age=0;
-            }else
-                age++;
+        ExecutorService executor = Executors.newFixedThreadPool(4);
+        IntStream.range(0, this.MAXTIME)
+                .forEach((x)->
+            executor.submit(this.getTask()));
+        try {
+            while (executor.awaitTermination(1,TimeUnit.SECONDS)){};
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         return currentSol;
     }
@@ -74,8 +98,8 @@ public class BiasedRandomCWS {
     }
 
     private boolean endCondition() {
-        Double current = ElapsedTime.calcElapsed(start,ElapsedTime.systemTime());
-        return ((current-start)<this.MAXTIME&&this.iter++<this.MAXITER);
+        Double  totalTime = ElapsedTime.calcElapsed(start,ElapsedTime.systemTime());
+        return ((totalTime)<this.MAXTIME&&this.iter++<this.MAXITER);
     }
     public static void main(String argv[]){
 
