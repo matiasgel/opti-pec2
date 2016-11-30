@@ -33,6 +33,10 @@ public class Solution{
      ******************************************************************************/
     
     public LinkedList<Route> getRoutes(){return routes;}
+
+    public void setRoutes(LinkedList<Route> routes){
+        this.routes=routes;
+    }
     
     public long getId(){return id;}
     
@@ -68,4 +72,26 @@ public class Solution{
             s += " Demand  = " + aRoute.getDemand();
             s += "\r\n";}
         return s;}
+
+    public Solution copy(){
+        Solution newSolution=new Solution();
+        newSolution.setCosts(this.getCosts());
+        newSolution.setTime(this.getTime());
+        newSolution.setDemand(this.getDemand());
+        LinkedList<Route> routes=new LinkedList<>();
+        for (Route r:this.getRoutes())
+            routes.add(r.copy());
+        newSolution.setRoutes(routes);
+        return newSolution;
+    }
+
+    public void calc() {
+        this.costs=0.0;
+        this.demand=0;
+        for (Route r:this.getRoutes()
+             ) {
+            this.costs+=r.getCosts();
+            this.demand+=r.getDemand();
+        }
+    }
 }

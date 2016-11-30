@@ -17,6 +17,7 @@ public class Route{
     private double costs = 0.0;
     private float demand = 0.0F;
     private LinkedList<CEdge> CEdges;
+
     
     /*******************************************************************************
      * Constructor 
@@ -34,14 +35,19 @@ public class Route{
     public float getDemand(){return demand;}
     
     public List<CEdge> getCEdges(){return CEdges;}
-    
+
+    public void setCEdges(LinkedList<CEdge> CEdges) {
+        this.CEdges = CEdges;
+    }
+
     public void setCosts(double c){costs = c;}
     
     public void setDemand(float d){demand = d;}
-    
+
+    /*
     public void setCEdges(LinkedList<CEdge> e){
         CEdges = e;}
-    
+    */
 	/******************************************************************************* 
      * MÉTODO PÚBLICO reverse()
      * Cambia el sentido de la ruta 
@@ -64,4 +70,15 @@ public class Route{
        s += "\nRuta demand:" + this.demand;
        s += "\nRuta edges: " + this.CEdges;
        return s;}
+
+    public Route copy() {
+        Route copyR=new Route();
+        copyR.setCosts(this.getCosts());
+        copyR.setDemand(this.getDemand());
+        LinkedList<CEdge> copyEdges=new LinkedList<>();
+        for (CEdge edge:this.getCEdges())
+            copyEdges.add(new CEdge(edge.getOrigin(),edge.getEnd()));
+        copyR.setCEdges(copyEdges);
+        return copyR;
+    }
 }

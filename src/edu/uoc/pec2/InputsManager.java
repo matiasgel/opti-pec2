@@ -80,7 +80,9 @@ public class InputsManager{
                 ijCEdge.setInverse(jiCEdge);
                 jiCEdge.setInverse(ijCEdge);
                 savingsArray[k] = ijCEdge;
-                k++;}}
+                k++;
+           }
+        }
         Arrays.sort(savingsArray);
         List<CEdge> sList = Arrays.asList(savingsArray);
         LinkedList<CEdge> savingsList = new LinkedList<CEdge>(sList);

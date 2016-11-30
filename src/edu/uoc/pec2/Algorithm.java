@@ -1,5 +1,7 @@
 package edu.uoc.pec2;
 
+import edu.uoc.pec2.biasedCWS.BiasedRandomCWS;
+
 /**********************************************************************************
 * Implementación de la heurística CWS para resolver el CVRP. 
 *
@@ -33,7 +35,8 @@ public class Algorithm{
     
     public Outputs solve(){
     	long start = ElapsedTime.systemTime();
-        cwsSol = CWS.solve(aTest, inputs);
+        BiasedRandomCWS rCws=new BiasedRandomCWS();
+        cwsSol = rCws.solve(aTest, inputs);
         double elapsed = ElapsedTime.calcElapsed(start, ElapsedTime.systemTime());
         cwsSol.setTime(elapsed);
         System.out.println("CWS sol cost: " + cwsSol.getCosts());

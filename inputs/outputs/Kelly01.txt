@@ -1,0 +1,18 @@
+CWS Sol
+------------------------
+Sol ID : 1
+Sol costs: 5956.504329845728
+Sol time: 0.032539884
+# of routes in sol: 10
+List of routes (cost and nodes): 
+Route 1 Costs = 610.6977842569751 Demand  = 550.0
+Route 2 Costs = 253.23059956431715 Demand  = 320.0
+Route 3 Costs = 642.4527642415793 Demand  = 400.0
+Route 4 Costs = 647.1602221611612 Demand  = 440.0
+Route 5 Costs = 648.3586116056981 Demand  = 550.0
+Route 6 Costs = 634.2354681459798 Demand  = 540.0
+Route 7 Costs = 642.4526071011647 Demand  = 540.0
+Route 8 Costs = 615.405413402322 Demand  = 550.0
+Route 9 Costs = 615.3507064425219 Demand  = 540.0
+Route 10 Costs = 647.1601529240585 Demand  = 370.0
+-------------------------

@@ -24,44 +24,58 @@ public class CWS{
           savings.add(0, e);   
         while(savings.isEmpty() == false){  
         	CEdge ijCEdge = savings.get(index);
-            savings.remove(ijCEdge);
-            CNode iCNode = ijCEdge.getOrigin();
-            CNode jCNode = ijCEdge.getEnd();
-            Route iR = iCNode.getInRoute();
-            Route jR = jCNode.getInRoute();
-            boolean isMergePossible = false;
-            isMergePossible = checkMergingConditions(aTest, inputs, iR, jR, ijCEdge);
-            if(isMergePossible == true){   
-            	CEdge iE = getEdge(iR, iCNode, depot);
-            	iR.getCEdges().remove(iE);
-            	iR.setCosts(iR.getCosts() - iE.getCosts());
-            	if(iR.getCEdges().size()>1) iCNode.setIsInterior(true);
-            	if(iR.getCEdges().get(0).getOrigin() != depot) iR.reverse();
-            	CEdge jE = getEdge(jR, jCNode, depot);
-            	jR.getCEdges().remove(jE);
-            	jR.setCosts(jR.getCosts() - jE.getCosts());
-            	if(jR.getCEdges().size() > 1) jCNode.setIsInterior(true);
-            	if(jR.getCEdges().get(0).getOrigin() == depot) jR.reverse();
-            	iR.getCEdges().add(ijCEdge);
-            	iR.setCosts(iR.getCosts() + ijCEdge.getCosts());
-            	iR.setDemand(iR.getDemand() + ijCEdge.getEnd().getDemand());
-            	jCNode.setInRoute(iR);
-            	for(CEdge e : jR.getCEdges()){
-            		iR.getCEdges().add(e);
-            		iR.setDemand(iR.getDemand() + e.getEnd().getDemand());
-            		iR.setCosts(iR.getCosts() + e.getCosts());
-            		e.getEnd().setInRoute(iR);}
-            	currentSol.setCosts(currentSol.getCosts() - ijCEdge.getSavings());
-            	currentSol.getRoutes().remove(jR);}}
-        	return currentSol;}
-    
+            verifyEdge(aTest, inputs, currentSol, depot, savings, ijCEdge);
+        }
+        	return currentSol;
+    }
+
+    public static void verifyEdge(Test aTest, Inputs inputs,
+                                  Solution currentSol,
+                                  CNode depot,
+                                  List<CEdge> savings,
+                                  CEdge ijCEdge) {
+        savings.remove(ijCEdge);
+        CNode iCNode = ijCEdge.getOrigin();
+        CNode jCNode = ijCEdge.getEnd();
+        Route iR = iCNode.getInRoute();
+        Route jR = jCNode.getInRoute();
+        boolean isMergePossible = false;
+        isMergePossible = checkMergingConditions(aTest, inputs, iR, jR, ijCEdge);
+        if(isMergePossible == true) merge(currentSol, depot, ijCEdge, iCNode, jCNode, iR, jR);
+    }
+
+    private static void merge(Solution currentSol, CNode depot, CEdge ijCEdge,
+                              CNode iCNode, CNode jCNode, Route iR, Route jR) {
+        CEdge iE = getEdge(iR, iCNode, depot);
+        iR.getCEdges().remove(iE);
+        iR.setCosts(iR.getCosts() - iE.getCosts());
+        if(iR.getCEdges().size()>1) iCNode.setIsInterior(true);
+        if(iR.getCEdges().get(0).getOrigin() != depot) iR.reverse();
+        CEdge jE = getEdge(jR, jCNode, depot);
+        jR.getCEdges().remove(jE);
+        jR.setCosts(jR.getCosts() - jE.getCosts());
+        if(jR.getCEdges().size() > 1) jCNode.setIsInterior(true);
+        if(jR.getCEdges().get(0).getOrigin() == depot) jR.reverse();
+        iR.getCEdges().add(ijCEdge);
+        iR.setCosts(iR.getCosts() + ijCEdge.getCosts());
+        iR.setDemand(iR.getDemand() + ijCEdge.getEnd().getDemand());
+        jCNode.setInRoute(iR);
+        for(CEdge e : jR.getCEdges()){
+            iR.getCEdges().add(e);
+            iR.setDemand(iR.getDemand() + e.getEnd().getDemand());
+            iR.setCosts(iR.getCosts() + e.getCosts());
+            e.getEnd().setInRoute(iR);}
+        currentSol.setCosts(currentSol.getCosts() - ijCEdge.getSavings());
+        currentSol.getRoutes().remove(jR);
+    }
+
 
     /*******************************************************************************
      * MÉTODO PÚBLICO generateDummySol()
      * Devuelve una solución inicial dummy con una ruta por cliente 
      ******************************************************************************/
         
-    private static Solution generateDummySol(Inputs inputs){ 
+    public static Solution generateDummySol(Inputs inputs){
         Solution sol = new Solution();
         for(int i = 1; i < inputs.getCNodes().length; i++){
             CNode iCNode = inputs.getCNodes()[i];

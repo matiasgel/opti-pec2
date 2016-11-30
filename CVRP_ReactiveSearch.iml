@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" name="gs-core-1" level="project" />
+    <orderEntry type="library" name="math" level="project" />
   </component>
 </module>

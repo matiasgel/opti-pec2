@@ -17,6 +17,7 @@ public class CEdge implements Comparable<CEdge>{
     private double costs = 0.0, savings = 0.0; 
     private Route inRoute = null; 
     private CEdge inverseCEdge = null;
+    private double geometricP=0.0;
     
     /*******************************************************************************
      * Constructor 
@@ -26,9 +27,18 @@ public class CEdge implements Comparable<CEdge>{
 	   origin = originCNode;
        end = endCNode;}
 
+    public double getGeometricP() {
+        return geometricP;
+    }
+
+    public void setGeometricP(double geometricP) {
+        this.geometricP = geometricP;
+    }
+
     /*******************************************************************************
      * Getters y Setters 
      ******************************************************************************/
+
 
     public CNode getOrigin(){return origin;}
     

@@ -45,8 +45,8 @@ public class AlgorithmTester{
             Algorithm algorithm = new Algorithm(aTest, inputs);
             Outputs output = algorithm.solve();
             CustomGraph graph =new CustomGraph(aTest.getInstanceName());
-            graph.add(output.getCWSSol(),inputs);
-            graph.saveToFile();
+           // graph.add(output.getCWSSol(),inputs);
+           // graph.saveToFile();
             String outputsFilePath = outputFolder + File.separator + aTest.getInstanceName() + ".txt";
             output.sendToFile(outputsFilePath);}
         	System.out.println("\n** END (refresh the outputs file to see the solutions) **");}
