@@ -35,8 +35,7 @@ public class Algorithm{
     
     public Outputs solve(){
     	long start = ElapsedTime.systemTime();
-        BiasedRandomCWS rCws=new BiasedRandomCWS();
-        cwsSol = rCws.solve(aTest, inputs);
+        cwsSol = BiasedRandomCWS.solve(aTest, inputs);
         double elapsed = ElapsedTime.calcElapsed(start, ElapsedTime.systemTime());
         cwsSol.setTime(elapsed);
         System.out.println("CWS sol cost: " + cwsSol.getCosts());

@@ -15,7 +15,7 @@ public class CWS{
      * Devuelve una solución basada en la heurística CWS 
      ******************************************************************************/
 	
-    public static Solution solve(Test aTest, Inputs inputs){
+    public  Solution solve(Test aTest, Inputs inputs){
         Solution currentSol = generateDummySol(inputs);
         CNode depot = inputs.getCNodes()[0];
         int index = 0;     
@@ -29,7 +29,7 @@ public class CWS{
         	return currentSol;
     }
 
-    public static void verifyEdge(Test aTest, Inputs inputs,
+    public  void verifyEdge(Test aTest, Inputs inputs,
                                   Solution currentSol,
                                   CNode depot,
                                   List<CEdge> savings,
@@ -44,7 +44,7 @@ public class CWS{
         if(isMergePossible == true) merge(currentSol, depot, ijCEdge, iCNode, jCNode, iR, jR);
     }
 
-    private static void merge(Solution currentSol, CNode depot, CEdge ijCEdge,
+    private  void merge(Solution currentSol, CNode depot, CEdge ijCEdge,
                               CNode iCNode, CNode jCNode, Route iR, Route jR) {
         CEdge iE = getEdge(iR, iCNode, depot);
         iR.getCEdges().remove(iE);
@@ -75,7 +75,7 @@ public class CWS{
      * Devuelve una solución inicial dummy con una ruta por cliente 
      ******************************************************************************/
         
-    public static Solution generateDummySol(Inputs inputs){
+    public  Solution generateDummySol(Inputs inputs){
         Solution sol = new Solution();
         for(int i = 1; i < inputs.getCNodes().length; i++){
             CNode iCNode = inputs.getCNodes()[i];
@@ -99,7 +99,7 @@ public class CWS{
      * Devuelve el arco de la ruta especificada que contiene el depot y un nodo dado 
      ******************************************************************************/
     
-    private static CEdge getEdge(Route aRoute, CNode iCNode, CNode depot){
+    private  CEdge getEdge(Route aRoute, CNode iCNode, CNode depot){
         CEdge firstCEdge = aRoute.getCEdges().get(0);
         CNode origin = firstCEdge.getOrigin();
         CNode end = firstCEdge.getEnd();
@@ -115,7 +115,7 @@ public class CWS{
      * Comprueba que sea factible unir dos rutas 
      ******************************************************************************/
     
-    private static boolean checkMergingConditions(Test aTest, Inputs inputs, Route iR, Route jR, CEdge ijCEdge){
+    private  boolean checkMergingConditions(Test aTest, Inputs inputs, Route iR, Route jR, CEdge ijCEdge){
         if(iR == jR)
             return false;
         CNode iCNode = ijCEdge.getOrigin();

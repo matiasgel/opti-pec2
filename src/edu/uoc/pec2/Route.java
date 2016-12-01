@@ -5,10 +5,11 @@ package edu.uoc.pec2; /*********************************************************
 * Optimización Combinatoria
 **********************************************************************************/
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Route{
+public class Route implements Serializable{
 	
 	/******************************************************************************* 
      * Variables de instancia
@@ -81,4 +82,6 @@ public class Route{
         copyR.setCEdges(copyEdges);
         return copyR;
     }
+
+
 }

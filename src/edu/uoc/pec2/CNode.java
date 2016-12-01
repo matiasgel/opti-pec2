@@ -1,5 +1,7 @@
 package edu.uoc.pec2;
 
+import java.io.Serializable;
+
 /**********************************************************************************
 * Implementación de la heurística CWS para resolver el CVRP. 
 *
@@ -7,7 +9,7 @@ package edu.uoc.pec2;
 * Optimización Combinatoria
 **********************************************************************************/
 
-public class CNode {
+public class CNode implements Serializable{
 	
     /*******************************************************************************
     * Variables de instancia 
@@ -71,4 +73,28 @@ public class CNode {
         s += this.y + " ";
         s = this.demand + "";
         return s;}
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public void setDemand(float demand) {
+        this.demand = demand;
+    }
+
+    public boolean isInterior() {
+        return isInterior;
+    }
+
+    public void setInterior(boolean interior) {
+        isInterior = interior;
+    }
 }

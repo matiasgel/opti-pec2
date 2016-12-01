@@ -1,4 +1,14 @@
 # vrpInstance | maxRouteCosts
+Kelly01 650
+Kelly02 900
+Kelly03 1200
+Kelly04 1600
+Kelly05 1800
+Kelly06 1500
+Kelly07 1300
+Kelly08 1200
+Kelly09 999999
+Kelly10 999999
 Kelly11 999999
 Kelly12 999999
 Kelly13 999999

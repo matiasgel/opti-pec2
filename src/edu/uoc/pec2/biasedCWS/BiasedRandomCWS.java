@@ -1,9 +1,12 @@
 package edu.uoc.pec2.biasedCWS;
 
+import cern.jet.random.engine.RandomEngine;
+import com.sun.corba.se.spi.orbutil.fsm.Input;
 import edu.uoc.pec2.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,48 +23,56 @@ import cern.jet.random.engine.MersenneTwister64;
  * Created by Matias on 22/11/2016.
  */
 public class BiasedRandomCWS {
-    private Uniform randomGenerator=new Uniform(new MersenneTwister64());
-    private final Integer MAXTIME=300;
-    private final long MAXITER=10000;
+    private static final long MAXITER=10000;
     private  Integer iter=0;
-    private long start;
     Test test;
     Inputs inputs;
     Integer age=0;
-    RouteCache cache;
-    Solution currentSol;
+    static RouteCache cache;
+    static Solution currentSol;
 
+    public BiasedRandomCWS(Inputs inputs,Test aTest){
+        this.inputs=inputs;
+        this.test=aTest;
+    }
 
-    Runnable getTask(){
+    static Runnable getTask(Inputs inputs,Test test){
+
        return   () -> {
-                Solution newSol=this.randomSolve();
+                BiasedRandomCWS bs = new BiasedRandomCWS(inputs,test);
+                Solution newSol=bs.randomSolve();
                 newSol = cache.improve(newSol);
-           checkSol(newSol);
+                checkSol(newSol);
        };
     }
 
-    public synchronized void   checkSol(Solution newSol) {
-        if(!(currentSol.getCosts()<=newSol.getCosts()))
+    public static synchronized void   checkSol(Solution newSol) {
+        if(!(currentSol.getCosts()<=newSol.getCosts())){
             currentSol=newSol;
+
+        }
     }
 
     ;
-    
 
-    public Solution solve(Test aTest, Inputs inputs) {
-        this.inputs=inputs;
-        this.test=aTest;
-         currentSol = CWS.solve(aTest, inputs);
+
+    public static Solution solve(Test aTest, Inputs inputs) {
+        CWS cws=new CWS();
+         currentSol = cws.solve(aTest, inputs);
          cache = new RouteCache();
         cache.addAll(currentSol.getRoutes());
-         start = ElapsedTime.systemTime();
-        this.iter=0;
+        ObjectCloner<Inputs>  inputsClonner =new ObjectCloner();
+        ObjectCloner<Test>  testClonner =new ObjectCloner();
         ExecutorService executor = Executors.newFixedThreadPool(4);
-        IntStream.range(0, this.MAXTIME)
-                .forEach((x)->
-            executor.submit(this.getTask()));
+        for(int ii=0;ii<BiasedRandomCWS.MAXITER;ii++)
+                    try {
+                        executor.execute(BiasedRandomCWS.getTask(inputsClonner.deepCopy(inputs), testClonner.deepCopy(aTest)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
         try {
-            while (executor.awaitTermination(1,TimeUnit.SECONDS)){};
+           executor.awaitTermination(1,TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -71,23 +82,25 @@ public class BiasedRandomCWS {
 
 
     private Solution randomSolve() {
-        Solution solution = CWS.generateDummySol(inputs);
+        CWS cws= new CWS();
+        Solution solution = cws.generateDummySol(inputs);
         CNode depot = inputs.getCNodes()[0];
         List<CEdge> savings = new LinkedList<CEdge>();
+        Uniform randomGenerator=new Uniform(new MersenneTwister64( new Random().nextInt()));
         for(CEdge e : inputs.getSavings())
             savings.add(0, e);
         while(savings.isEmpty() == false){
-            CEdge ijCEdge = this.getRandomEdge(savings);
-            CWS.verifyEdge(test, inputs, solution, depot, savings, ijCEdge);
+            Double rn=randomGenerator.nextDouble();
+            double beta=randomGenerator.nextDoubleFromTo(0.05,0.25);
+            CEdge ijCEdge = this.getRandomEdge(savings,rn,beta);
+            cws.verifyEdge(test, inputs, solution, depot, savings, ijCEdge);
         }
         return solution;
     }
 
-    private CEdge getRandomEdge(List<CEdge> savings) {
+    private CEdge getRandomEdge(List<CEdge> savings, Double rn, double beta) {
         int index=0;
         double cumu=0.0;
-        Double rn=randomGenerator.nextDouble();
-        double beta=randomGenerator.nextDoubleFromTo(0.05,0.25);
         while (true){
             Double d=Distributions.geometricPdf(index,beta);
             cumu+=d;
@@ -97,10 +110,7 @@ public class BiasedRandomCWS {
         }
     }
 
-    private boolean endCondition() {
-        Double  totalTime = ElapsedTime.calcElapsed(start,ElapsedTime.systemTime());
-        return ((totalTime)<this.MAXTIME&&this.iter++<this.MAXITER);
-    }
+
     public static void main(String argv[]){
 
     }

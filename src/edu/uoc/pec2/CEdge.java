@@ -1,5 +1,7 @@
 package edu.uoc.pec2;
 
+import java.io.Serializable;
+
 /**********************************************************************************
 * Implementación de la heurística CWS para resolver el CVRP. 
 *
@@ -7,7 +9,7 @@ package edu.uoc.pec2;
 * Optimización Combinatoria
 **********************************************************************************/
 
-public class CEdge implements Comparable<CEdge>{
+public class CEdge implements Comparable<CEdge>,Serializable{
 	
     /*******************************************************************************
     * Variables de instancia 
@@ -114,4 +116,16 @@ public class CEdge implements Comparable<CEdge>{
         s += "\nEdge costs: " + this.costs;
         s = "\nEdge savings: " + this.savings;
         return s;}
+
+    public void setOrigin(CNode origin) {
+        this.origin = origin;
+    }
+
+    public void setEnd(CNode end) {
+        this.end = end;
+    }
+
+    public void setInverseCEdge(CEdge inverseCEdge) {
+        this.inverseCEdge = inverseCEdge;
+    }
 }

@@ -1,5 +1,7 @@
 package edu.uoc.pec2;
 
+import java.io.Serializable;
+
 /**********************************************************************************
 * Implementación de la heurística CWS para resolver el CVRP. 
 *
@@ -7,7 +9,7 @@ package edu.uoc.pec2;
 * Optimización Combinatoria
 **********************************************************************************/
 
-public class Test{
+public class Test implements Serializable{
 	
     /*******************************************************************************
     * Variables de instancia 
@@ -30,4 +32,12 @@ public class Test{
     
     public String getInstanceName(){return instanceName;}    
     public float getMaxRouteCosts(){return maxRouteCosts;}
+
+    public void setInstanceName(String instanceName) {
+        this.instanceName = instanceName;
+    }
+
+    public void setMaxRouteCosts(float maxRouteCosts) {
+        this.maxRouteCosts = maxRouteCosts;
+    }
 }
