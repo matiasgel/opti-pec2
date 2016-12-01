@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="91655700-3e11-4d75-956b-3d6fdb626697" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/edu/uoc/pec2/biasedCWS/ObjectCloner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/outputs/Kelly01.txt" afterPath="$PROJECT_DIR$/outputs/Kelly01.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/uoc/pec2/Algorithm.java" afterPath="$PROJECT_DIR$/src/edu/uoc/pec2/Algorithm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/uoc/pec2/CEdge.java" afterPath="$PROJECT_DIR$/src/edu/uoc/pec2/CEdge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/uoc/pec2/CNode.java" afterPath="$PROJECT_DIR$/src/edu/uoc/pec2/CNode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/uoc/pec2/CWS.java" afterPath="$PROJECT_DIR$/src/edu/uoc/pec2/CWS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/uoc/pec2/Inputs.java" afterPath="$PROJECT_DIR$/src/edu/uoc/pec2/Inputs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/uoc/pec2/Route.java" afterPath="$PROJECT_DIR$/src/edu/uoc/pec2/Route.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/uoc/pec2/Test.java" afterPath="$PROJECT_DIR$/src/edu/uoc/pec2/Test.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/uoc/pec2/biasedCWS/BiasedRandomCWS.java" afterPath="$PROJECT_DIR$/src/edu/uoc/pec2/biasedCWS/BiasedRandomCWS.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/test2Run.txt" afterPath="$PROJECT_DIR$/tests/test2Run.txt" />
     </list>
     <ignored path="opti-pec2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -722,7 +711,7 @@
       <workItem from="1480167475429" duration="68000" />
       <workItem from="1480278659127" duration="6773000" />
       <workItem from="1480420652952" duration="34205000" />
-      <workItem from="1480520143009" duration="21187000" />
+      <workItem from="1480520143009" duration="21233000" />
     </task>
     <task id="LOCAL-00001" summary="parelelismo">
       <created>1480540723473</created>
@@ -731,11 +720,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480540723473</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="parelelismo">
+      <created>1480559318189</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1480559318189</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114318000" />
+    <option name="totallyTimeSpent" value="114364000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1292" height="735" extended-state="0" />
