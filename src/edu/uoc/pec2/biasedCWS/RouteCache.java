@@ -14,12 +14,18 @@ import java.util.stream.Collectors;
  */
 public class RouteCache {
 
+     private static RouteCache instance=null;
+
     private HashMap<String,Route> routes;
 
-    public RouteCache(){
+    private RouteCache(){
         this.routes=new HashMap<String,Route>();
     }
 
+    public static RouteCache getInstance(){
+        if(instance==null)instance=new RouteCache();
+        return instance;
+    }
     /**
      * Busca la ruta parametro en la cache, si la encuentra verifica cual es la mejor. Si la ruta parametro
      * es la mejor, la guarda en el cache y la retorna. Si la ruta guardada es la mejor la retorna.
@@ -28,6 +34,11 @@ public class RouteCache {
      */
     public Route getBestRoute(Route route){
         String hashCode = getHash(route);
+        Route rout = getRoute(route, hashCode);
+        return rout;
+    }
+
+    private synchronized Route getRoute(Route route, String hashCode) {
         Route r=this.routes.get(hashCode);
         Route rout=route;
         if (r!=null) {

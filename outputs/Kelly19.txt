@@ -1,41 +1,41 @@
 CWS Sol
 ------------------------
-Sol ID : 2283
-Sol costs: 1465.9995137325286
-Sol time: 1.008079116
+Sol ID : 129143
+Sol costs: 1446.1810271875204
+Sol time: 215.930589318
 # of routes in sol: 33
 List of routes (cost and nodes): 
-Route 1 Costs = 22.610943468965505 Demand  = 140.0
-Route 2 Costs = 27.513666950319404 Demand  = 200.0
-Route 3 Costs = 26.25685068970416 Demand  = 200.0
-Route 4 Costs = 23.587919558322895 Demand  = 200.0
-Route 5 Costs = 41.997760124626375 Demand  = 200.0
-Route 6 Costs = 23.849402336267953 Demand  = 160.0
-Route 7 Costs = 30.238656053718515 Demand  = 200.0
-Route 8 Costs = 23.528445828513753 Demand  = 200.0
-Route 9 Costs = 22.536729386898568 Demand  = 180.0
-Route 10 Costs = 41.997760124626375 Demand  = 200.0
-Route 11 Costs = 30.23863716668278 Demand  = 200.0
-Route 12 Costs = 30.238673591228167 Demand  = 200.0
-Route 13 Costs = 48.09105926701638 Demand  = 200.0
-Route 14 Costs = 48.09105926701638 Demand  = 200.0
-Route 15 Costs = 35.48124435018141 Demand  = 200.0
-Route 16 Costs = 32.92852979750367 Demand  = 200.0
-Route 17 Costs = 35.481198573405564 Demand  = 200.0
-Route 18 Costs = 28.841324405580938 Demand  = 200.0
-Route 19 Costs = 35.481266440073846 Demand  = 200.0
-Route 20 Costs = 35.135793967272456 Demand  = 200.0
-Route 21 Costs = 35.48116942892257 Demand  = 200.0
-Route 22 Costs = 55.36092310040015 Demand  = 200.0
-Route 23 Costs = 55.36097001135348 Demand  = 200.0
-Route 24 Costs = 70.66323037502674 Demand  = 200.0
-Route 25 Costs = 70.66311624677988 Demand  = 200.0
-Route 26 Costs = 70.66323037502674 Demand  = 200.0
+Route 1 Costs = 22.621032869635957 Demand  = 200.0
+Route 2 Costs = 44.85914113165427 Demand  = 200.0
+Route 3 Costs = 35.31064405627622 Demand  = 200.0
+Route 4 Costs = 29.06729520044845 Demand  = 200.0
+Route 5 Costs = 22.31839765563222 Demand  = 170.0
+Route 6 Costs = 23.174343691395503 Demand  = 190.0
+Route 7 Costs = 31.026978886427365 Demand  = 200.0
+Route 8 Costs = 27.04610052421216 Demand  = 200.0
+Route 9 Costs = 40.345890358075074 Demand  = 200.0
+Route 10 Costs = 20.88943682000368 Demand  = 150.0
+Route 11 Costs = 32.1969651407096 Demand  = 200.0
+Route 12 Costs = 22.318347585755863 Demand  = 170.0
+Route 13 Costs = 24.792677744031316 Demand  = 200.0
+Route 14 Costs = 46.11471558134132 Demand  = 200.0
+Route 15 Costs = 48.09105926701638 Demand  = 200.0
+Route 16 Costs = 28.841320062349865 Demand  = 200.0
+Route 17 Costs = 34.72430697446757 Demand  = 200.0
+Route 18 Costs = 50.78410747415507 Demand  = 200.0
+Route 19 Costs = 39.742536002628974 Demand  = 200.0
+Route 20 Costs = 36.08073104482945 Demand  = 200.0
+Route 21 Costs = 28.841320062349865 Demand  = 200.0
+Route 22 Costs = 35.48116942892257 Demand  = 200.0
+Route 23 Costs = 58.95794801448316 Demand  = 200.0
+Route 24 Costs = 58.957860815907324 Demand  = 200.0
+Route 25 Costs = 55.36097001135347 Demand  = 200.0
+Route 26 Costs = 70.66311624677988 Demand  = 200.0
 Route 27 Costs = 70.66323037502674 Demand  = 200.0
 Route 28 Costs = 70.66311624677988 Demand  = 200.0
 Route 29 Costs = 70.66323037502674 Demand  = 200.0
-Route 30 Costs = 65.44302578380558 Demand  = 200.0
-Route 31 Costs = 60.402162141325846 Demand  = 200.0
-Route 32 Costs = 65.44302578380558 Demand  = 200.0
-Route 33 Costs = 60.402162141325846 Demand  = 200.0
+Route 30 Costs = 75.33165028296773 Demand  = 200.0
+Route 31 Costs = 75.33150821036826 Demand  = 200.0
+Route 32 Costs = 60.402162141325846 Demand  = 200.0
+Route 33 Costs = 54.51771690518243 Demand  = 200.0
 -------------------------

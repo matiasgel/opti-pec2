@@ -1,7 +1,6 @@
 package edu.uoc.pec2.biasedCWS;
 
 import cern.jet.random.engine.RandomEngine;
-import com.sun.corba.se.spi.orbutil.fsm.Input;
 import edu.uoc.pec2.*;
 
 import java.util.LinkedList;
@@ -28,7 +27,6 @@ public class BiasedRandomCWS {
     Test test;
     Inputs inputs;
     Integer age=0;
-    static RouteCache cache;
     static Solution currentSol;
 
     public BiasedRandomCWS(Inputs inputs,Test aTest){
@@ -39,10 +37,12 @@ public class BiasedRandomCWS {
     static Runnable getTask(Inputs inputs,Test test){
 
        return   () -> {
+              for(int i=0;i<3000;i++){
                 BiasedRandomCWS bs = new BiasedRandomCWS(inputs,test);
                 Solution newSol=bs.randomSolve();
-                newSol = cache.improve(newSol);
+                newSol = RouteCache.getInstance().improve(newSol);
                 checkSol(newSol);
+              }
        };
     }
 
@@ -58,13 +58,12 @@ public class BiasedRandomCWS {
 
     public static Solution solve(Test aTest, Inputs inputs) {
         CWS cws=new CWS();
-         currentSol = cws.solve(aTest, inputs);
-         cache = new RouteCache();
-        cache.addAll(currentSol.getRoutes());
+        currentSol = cws.solve(aTest, inputs);
+        RouteCache.getInstance().addAll(currentSol.getRoutes());
         ObjectCloner<Inputs>  inputsClonner =new ObjectCloner();
         ObjectCloner<Test>  testClonner =new ObjectCloner();
-        ExecutorService executor = Executors.newFixedThreadPool(4);
-        for(int ii=0;ii<BiasedRandomCWS.MAXITER;ii++)
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+        for(int ii=0;ii<5;ii++)
                     try {
                         executor.execute(BiasedRandomCWS.getTask(inputsClonner.deepCopy(inputs), testClonner.deepCopy(aTest)));
                     } catch (Exception e) {
@@ -72,7 +71,10 @@ public class BiasedRandomCWS {
                     }
 
         try {
-           executor.awaitTermination(1,TimeUnit.SECONDS);
+            executor.shutdown();
+            while(!executor.isTerminated()) {
+             Boolean s=   executor.awaitTermination(10, TimeUnit.SECONDS);
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -90,24 +92,25 @@ public class BiasedRandomCWS {
         for(CEdge e : inputs.getSavings())
             savings.add(0, e);
         while(savings.isEmpty() == false){
-            Double rn=randomGenerator.nextDouble();
             double beta=randomGenerator.nextDoubleFromTo(0.05,0.25);
-            CEdge ijCEdge = this.getRandomEdge(savings,rn,beta);
+            CEdge ijCEdge = this.getRandomEdge(savings,randomGenerator,beta);
             cws.verifyEdge(test, inputs, solution, depot, savings, ijCEdge);
         }
         return solution;
     }
 
-    private CEdge getRandomEdge(List<CEdge> savings, Double rn, double beta) {
+    private CEdge getRandomEdge(List<CEdge> savings, Uniform rn, double beta) {
         int index=0;
         double cumu=0.0;
-        while (true){
+        double rand=rn.nextDouble();
+        while (index<savings.size()){
             Double d=Distributions.geometricPdf(index,beta);
             cumu+=d;
-            if(rn<cumu)
+            if(rand<cumu)
                 return savings.get(index);
-            if(!(++index<savings.size()))index=0;
+            index++;
         }
+        return savings.get(rn.nextIntFromTo(0,savings.size()-1));
     }
 
 
